@@ -1,0 +1,5 @@
+package koanrunner
+
+class KoanReporter {
+
+}
