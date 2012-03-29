@@ -1,0 +1,15 @@
+@(outputScala: String)
+
+@import helper._
+
+@main("Scala Koans Online") {
+
+    <script src="@routes.Assets.at("javascripts/index.js")" type="text/javascript"></script>
+
+    <h3>Evaluation output </h3>
+
+    <textarea rows="10" cols="100">
+           @outputScala
+    </textarea>
+    
+}

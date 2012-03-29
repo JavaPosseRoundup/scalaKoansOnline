@@ -1,7 +1,26 @@
-@(message: String)
+@(scalaCodeForm: Form[(String)])
 
-@main("Welcome to Play 2.0") {
-    
-    @play20.welcome(message)
+@import helper._
+
+@main("Scala Koans Online") {
+
+    <script src="@routes.Assets.at("javascripts/index.js")" type="text/javascript"></script>
+
+    <h3>Enter scala string to evaluate:</h3>
+
+
+    @form(routes.Application.evaluateScalaCode()) {
+
+        <fieldset>
+                @textarea(scalaCodeForm("inputScala"), '_label -> "Input Scala",  'rows -> 10, 'cols -> 100)
+        </fieldset>
+
+        <div class="actions">
+            <input type="submit" value="Evaluate this scala" class="btn primary">
+        </div>
+
+    }
+
+
     
 }

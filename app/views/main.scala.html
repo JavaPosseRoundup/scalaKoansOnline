@@ -6,10 +6,35 @@
     <head>
         <title>@title</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+
+        <link rel="stylesheet" type="text/css" media="screen"
+              href="@routes.Assets.at("stylesheets/bootstrap.css")">
+
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
         <script src="@routes.Assets.at("javascripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
     </head>
     <body>
-        @content
+
+ <!--       <div class="topbar">
+                <div class="topbar-inner">
+                    <div class="container-fluid">
+                        <a class="brand" href="/">Scala Koans</a>
+
+                    </div>
+                </div>
+        </div>
+  -->
+        <div class="container-fluid">
+
+            <div class="sidebar">
+                <div class="well">
+                    <h5>Scala Evaluator</h5>
+                </div>
+            </div>
+
+            <div class="content">
+                @content
+            </div>
+        </div>
     </body>
 </html>
