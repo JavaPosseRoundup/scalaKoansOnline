@@ -1,4 +1,4 @@
-@(outputScala: String)
+@(outputScala: scala.collection.mutable.Map[String, koanrunner.TestResult])
 
 @import helper._
 
@@ -8,8 +8,6 @@
 
     <h3>Evaluation output </h3>
 
-    <textarea rows="10" cols="100">
-           @outputScala
-    </textarea>
+    @outputScala
     
 }
