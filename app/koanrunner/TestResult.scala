@@ -1,5 +1,3 @@
 package koanrunner
 
-class TestResult {
-
-}
+case class TestResult(succeeded: Boolean, message: String)

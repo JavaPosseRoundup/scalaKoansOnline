@@ -4,14 +4,16 @@ import play.api._
 import play.api.mvc._
 
 import com.twitter.util.Eval
-import support.KoanReporter
 import support.KoanSuite
 import org.scalatest.{Filter, Stopper, Tracker}
+import koanrunner.{TestResult, KoanReporter}
+
+import scala.collection.mutable.Map
 
 object Application extends Controller {
   
   def index = Action {
-    
+
     val someScala = """
     import org.scalatest.matchers.ShouldMatchers
     import support.KoanSuite
@@ -29,8 +31,10 @@ object Application extends Controller {
     """
 
     val suite = Eval[KoanSuite](someScala)
-    
-    suite.run(None, new KoanReporter, new Stopper {}, Filter(), Map[String, Any](), None, new Tracker)
+
+    val results = Map[String, TestResult]()
+
+    suite.run(None, new KoanReporter(results), new Stopper {}, Filter(), scala.collection.immutable.Map[String, Any](), None, new Tracker)
 
     Ok(views.html.index("Your new application is ready."))
   }
