@@ -8,7 +8,8 @@ object ApplicationBuild extends Build {
     val appVersion      = "1.0-SNAPSHOT"
 
     val appDependencies = Seq(
-      // Add your project dependencies here,
+      "com.twitter" % "util-eval" % "3.0.0",
+      "org.scalatest" %% "scalatest" % "1.7.1"
     )
 
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(
