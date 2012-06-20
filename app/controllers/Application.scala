@@ -13,18 +13,28 @@ import play.api.data.Forms.{single, nonEmptyText}
 import com.codahale.jerkson.Json
 
 
-object Application extends Controller {
+import org.functionalkoans.forscala.support.KoanSuite
+import org.scalatest.Tracker
 
+import koanrunner.KoanReporter
+import koanrunner.KoanRunner
+import play.api.data.Forms._
+import play.api.data._
+import play.api.mvc._
+import views.html
+
+object Application extends Controller {
+    
   val scalaCodeForm = Form(
     single(
       "inputScala" -> nonEmptyText
     )
   )
-  
+    
   def index = Action {
     Ok(views.html.index(scalaCodeForm))
   }
-
+  
   def evaluateScalaCode = Action {
     implicit request =>
       scalaCodeForm.bindFromRequest.value map {
@@ -36,6 +46,9 @@ object Application extends Controller {
           val testResults = Json.parse[Map[String, TestResult]](response)
 
           Ok(views.html.output(testResults))
+
+//            val outputScala = KoanRunner.doEval(inputScala)
+//            Ok(html.output(outputScala))
         }
       } getOrElse BadRequest
   }

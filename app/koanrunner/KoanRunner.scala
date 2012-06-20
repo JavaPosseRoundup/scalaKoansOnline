@@ -38,4 +38,15 @@ object KoanRunner extends App {
     sys.error("RABBITMQ_URL environment variable not found")
   }
 
+  def doEval(scalaCode: String) = {
+    val eval = new Eval
+    Logger.debug("Eval's classpath = " + eval.impliedClassPath);
+    val suite = eval[KoanSuite](scalaCode)
+
+    val reporter = new KoanReporter
+    suite.run(None, reporter, new Stopper() {}, Filter(), Map.empty, None, new Tracker)
+
+    reporter.results
+  }
+
 }

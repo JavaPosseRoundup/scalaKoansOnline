@@ -1,0 +1,100 @@
+@(koanName: String, koanForm: Form[controllers.AboutEmptyValues.T],
+ results: Map[String, koanrunner.TestResult])
+
+@import helper._
+@import koanrunner.TestResult
+@import views.Util._
+
+@input(id: String) = { <input type="text" name="@id" value="@koanForm(id).value"> }
+
+@main(koanName) {
+@form(action = routes.AboutEmptyValues.eval) {
+<code>
+class AboutEmptyValues extends KoanSuite with ShouldMatchers {<br/>
+<br/>
+<div class='@success(results.get("None equals None"))'>
+&nbsp;&nbsp;koan("None equals None") {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(None === @input("1"))<br/>
+&nbsp;&nbsp;}<br/>
+</div>
+<br/>
+<div class='@success(results.get("None should be identical to None"))'>
+&nbsp;&nbsp;koan("None should be identical to None") {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;val a = None<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(a eq @input("2")) // note that eq denotes identity, and == denotes equality in Scala<br/>
+&nbsp;&nbsp;}<br/>
+</div>
+<br/>
+<div class='@success(results.get("None can be converted to a String"))'>
+&nbsp;&nbsp;koan("None can be converted to a String") {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(None.toString === @input("3"))<br/>
+&nbsp;&nbsp;}<br/>
+</div>
+<br/>
+<div class='@success(results.get("An empty list can be represented by another nothing value: Nil"))'>
+&nbsp;&nbsp;koan("An empty list can be represented by another nothing value: Nil") {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(List() === @input("4"))<br/>
+&nbsp;&nbsp;}<br/>
+</div>
+<br/>
+<div class='@success(results.get("None can be converted to an empty list"))'>
+&nbsp;&nbsp;koan("None can be converted to an empty list") {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;val a = None<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(a.toList === @input("5"))<br/>
+&nbsp;&nbsp;}<br/>
+</div>
+<br/>
+<div class='@success(results.get("None is considered empty"))'>
+&nbsp;&nbsp;koan("None is considered empty") {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(None.isEmpty === @input("6"))<br/>
+&nbsp;&nbsp;}<br/>
+</div>
+<br/>
+<div class='@success(results.get("None can be cast Any, AnyRef or AnyVal"))'>
+&nbsp;&nbsp;koan("None can be cast Any, AnyRef or AnyVal") {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(None.asInstanceOf[Any] === @input("7"))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(None.asInstanceOf[AnyRef] === @input("8"))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(None.asInstanceOf[AnyVal] === @input("9"))<br/>
+&nbsp;&nbsp;}<br/>
+</div>
+<br/>
+<div class='@success(results.get("None cannot be cast to all types of objects"))'>
+&nbsp;&nbsp;koan("None cannot be cast to all types of objects") {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intercept[ClassCastException] {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// put the exception you expect to see in place of the blank<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(None.asInstanceOf[String] === @input("10"))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+</div>
+<br/>
+<div class='@success(results.get("None can be used with Option instead of null references"))'>
+&nbsp;&nbsp;koan("None can be used with Option instead of null references") {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;val optional: Option[String] = None<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(optional.isEmpty === @input("11"))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(optional === @input("12"))<br/>
+&nbsp;&nbsp;}<br/>
+</div>
+<br/>
+<div class='@success(results.get("Some is the opposite of None for Option types"))'>
+&nbsp;&nbsp;koan("Some is the opposite of None for Option types") {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;val optional: Option[String] = Some("Some Value")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert((optional == None) === @input("13"), "Some(value) should not equal None")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(optional.isEmpty === @input("14"), "Some(value) should not be empty")<br/>
+&nbsp;&nbsp;}<br/>
+</div>
+<br/>
+<div class='@success(results.get("Option.getOrElse can be used to provide a default in the case of None"))'>
+&nbsp;&nbsp;koan("Option.getOrElse can be used to provide a default in the case of None") {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;val optional: Option[String] = Some("Some Value")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;val optional2: Option[String] = None<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(optional.getOrElse("No Value") === @input("15"), "Should return the value in the option")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(optional2.getOrElse("No Value") === @input("16"), "Should return the specified default value")<br/>
+&nbsp;&nbsp;}<br/>
+</div>
+}<br/>
+</code>
+<div class="actions">
+    <input type="submit" value="Evaluate this koan" class="btn primary">
+</div>
+}
+}
