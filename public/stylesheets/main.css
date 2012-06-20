@@ -1,1 +1,10 @@
 /** Empty main.css **/
+.failed {
+	background-color: rgba(255, 153, 153, 0.6);
+	border: 1px solid #E70800;
+}
+
+.succeeded {
+	background-color: rgba(204, 255, 204, 0.6);
+	border: 1px solid #00700F;
+}

@@ -1,6 +1,7 @@
-@(outputScala: scala.collection.mutable.Map[String, koanrunner.TestResult])
+@(testResults: Map[String, koanrunner.TestResult])
 
 @import helper._
+@import koanrunner.TestResult
 
 @main("Scala Koans Online") {
 
@@ -8,6 +9,10 @@
 
     <h3>Evaluation output </h3>
 
-    @outputScala
+    <ul>
+    @for(r <- testResults) {
+      <li>Test @r._1 succeeded: @r._2.succeeded (@r._2.message)</li>
+    } 
+    </ul>
     
 }

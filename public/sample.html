@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+	<head>
+	  <meta charset="utf-8">
+	  <link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+	  <header>
+	  <h2>Conference</h2>
+	  <nav>
+	  <ul>
+	     <li><A href="sessions.html">Sessions</A></li>
+	     <li>|</li>
+	     <li><A href="schedule.html">Schedule</A></li>
+       <li>|</li>
+       <li><A href="speakers.html">Speakers</A></li>
+	  </ul>
+	  </nav>
+	  </header>
+	  <section id="speakerslist">
+	  <article>
+	     <h1>Neal Ford</h1>
+	     <p>ThoughtWorks</p>
+	  </article>
+	  <aside id="special">
+	     <p>This is aside</p>
+	  </aside>
+	  <article>
+		   <h1>Venkat</h1>  
+		</article>
+	  </section>
+	  <section>
+	  <table>
+	   <thead>
+	     <tr><th>Topic</th><th>Attendees</th></tr>
+	   </thead>
+	   <tbody>
+	     <tr><td>HTML5</td><td>100</td></tr>
+       <tr><td>Concurrency</td><td>100</td></tr>
+       <tr><td>JavaScript</td><td>100</td></tr>
+       <tr><td>Total</td><td>100</td></tr>	     
+	   </tbody>
+	  </table>
+	  </section>
+	  <section>
+	  <form method="post">
+	   <fieldset id="addspeaker">
+	     <label>Name</label>
+	     <input type="text" name="name" placeholder="your name" autofocus></input>
+	     <label>E-mail</label>
+	     <input type="email" placeholder="your e-mail"></input>
+	     <label>Level</label>
+	     <input type="range"></input>
+	     <label>Secure Website</label>
+	     <input type="text" pattern="https?://.+" required/>
+	     <input type="submit"/>
+	   </fieldset>
+	  </form>
+	  </section>
+	  <canvas id="logo" width="50" height="50">
+	   <img src=""/>
+	  </canvas>
+	  <script type="text/javascript">
+	   var drawLogo = function() {
+		   var canvas = document.getElementById("logo");
+		   var context = canvas.getContext("2d");
+		   context.lineWidth = 3;
+		   context.strokeStyle = "#F0F";
+		   context.beginPath();
+		   context.moveTo(0, 0);
+		   context.lineTo(25, 50);
+		   context.lineTo(50, 0);
+		   context.stroke();
+		   context.closePath();
+	   };
+	   drawLogo();
+	  </script>
+	  <footer>
+	     <hr/>
+       <p>&copy; 2012-All rights reserved</p>
+	  </footer>
+	</body>
+</html>

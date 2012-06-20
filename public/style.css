@@ -1,0 +1,27 @@
+header nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+header nav ul li {
+	display: inline;
+}
+
+
+footer {
+	clear: both;
+}
+
+th {
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+tr:nth-of-type(even) {
+	background-color: #FF0000;
+}
+
+tr:last-child td:last-child {
+	font-style: italic;
+}
