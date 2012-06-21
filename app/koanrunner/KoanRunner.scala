@@ -3,12 +3,12 @@ package koanrunner
 import messaging.MessageBus
 import util.Properties
 import com.rabbitmq.client.StringRpcServer
-import support.KoanSuite
+import org.functionalkoans.forscala.support.KoanSuite
 import com.twitter.util.Eval
 import org.scalatest.{Filter, Tracker, Stopper}
 import com.codahale.jerkson.Json
+import play.Logger
 
-import scala.collection.mutable.Map
 
 object KoanRunner extends App {
 
@@ -24,9 +24,10 @@ object KoanRunner extends App {
 
         val results = Map[String, TestResult]()
 
-        suite.run(None, new KoanReporter(results), new Stopper {}, Filter(), scala.collection.immutable.Map[String, Any](), None, new Tracker)
+        val reporter = new KoanReporter
+        suite.run(None, reporter, new Stopper {}, Filter(), Map.empty, None, new Tracker)
 
-        val json = Json.generate(results)
+        val json = Json.generate(reporter.results)
         println("returning: " + json)
         json
       }
