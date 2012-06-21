@@ -5,7 +5,7 @@ import play.api.data.Forms.tuple
 import play.api.data.Form
 import play.api.mvc.Action
 import play.Logger
-import koanrunner.KoanRunner
+import koanrunner._
 
 
 object AboutEmptyValues extends Koan {
@@ -36,30 +36,11 @@ object AboutEmptyValues extends Koan {
       ) 
   )
   
-  def init = Action {
-    Ok(views.html.aboutEmptyValues(name, form, Map.empty))
-  }  
-  
-  def eval = Action {
-    implicit request => {
-      val f = form.bindFromRequest
-      f.value map {
-        case (tuple) => {
-          val params = for (param <- tuple.productIterator.toList)
-            yield param match {
-              case "" => "__"
-              case s:String => s
-              case _ => ""
-            }
-          val splitKoan = source.split("__").toList
-          val inputScala = merge(splitKoan, params).reduceLeft(_ + _)
-          val results = KoanRunner.doEval(inputScala)
-          Ok(views.html.aboutEmptyValues(name, f, results))
-        }
-      } getOrElse BadRequest
-    }
-  }
-
+  override def template(name: String, form:
+      Form[(String, String, String, String, String, String, String, String, String, 
+        String, String, String, String, String, String, String)], results: Map[String, TestResult]) = 
+          views.html.aboutEmptyValues(name, form, results)
+ 
   
   
   val source = 
