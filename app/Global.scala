@@ -2,8 +2,8 @@ import com.rabbitmq.client.AMQP.BasicProperties
 import com.rabbitmq.client.{GetResponse, Channel, ConnectionFactory}
 import messaging.MessageBus
 import play.api.GlobalSettings
-
 import play.api.Application
+import play.Logger
 
 object Global extends GlobalSettings {
 
@@ -12,7 +12,7 @@ object Global extends GlobalSettings {
     app.configuration.getString("rabbitmq.uri") map { uri =>
       MessageBus.setup(uri)
     } getOrElse {
-      sys.error("No rabbitmq.uri specified")
+      Logger.warn("No rabbitmq.uri specified")
     }
 
   }
