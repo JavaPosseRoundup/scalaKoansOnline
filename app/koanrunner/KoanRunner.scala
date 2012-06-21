@@ -20,9 +20,8 @@ object KoanRunner extends App {
       override def handleStringCall(request: String) = {
         println("received: " + request)
 
-        val suite = Eval[KoanSuite](request)
-
-        val results = Map[String, TestResult]()
+        val eval = new Eval
+        val suite = eval[KoanSuite](request)
 
         val reporter = new KoanReporter
         suite.run(None, reporter, new Stopper {}, Filter(), Map.empty, None, new Tracker)
