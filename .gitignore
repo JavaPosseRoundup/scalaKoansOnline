@@ -8,3 +8,7 @@
 /.idea
 /*.iml
 /out
+.cache
+.classpath
+.project
+.settings
