@@ -7,6 +7,14 @@ import koanrunner._
 import play.Logger
 import play.api.templates.Html
 
+object Koan {
+  
+  private val koans: Map[String, Koan] = Map(
+      AboutEmptyValues.name -> AboutEmptyValues
+  );
+  
+  def apply(name: String) = koans(name)
+}
 
 abstract class Koan extends Controller {
   type T <: Product
